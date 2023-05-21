@@ -22,7 +22,7 @@ COPY --from=builder /app/dist .
 RUN adduser -D $USER && chown $USER:$USER .
 RUN yarn global add pm2
 ENV DB_QUERY_STRING='ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@pragma-cosmosdb@'
-#Switching to the created user
+#Switching to the created user.
 USER $USER
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
